@@ -7,17 +7,20 @@ const Webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['babel-polyfill', './src/index.js'],
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: path.resolve(__dirname, '../src')
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, '../src'),
+        use: {
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -25,8 +28,8 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 8192
-            }
+              limit: 8192,
+            },
           }
         ]
       }
@@ -44,13 +47,13 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../index.html'),
-      inject: true
+      inject: true,
     }),
     new Webpack.NamedModulesPlugin()
   ],
   optimization: {
     splitChunks: {
-      chunks: 'async'
+      chunks: 'async',
     }
   }
 };
