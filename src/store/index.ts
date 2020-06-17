@@ -1,6 +1,3 @@
-/**
- * Created by kid on 2017/5/31.
- */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import getters from './getters';
@@ -16,5 +13,5 @@ const state = {
 export default new Vuex.Store({
   state,
   getters,
-  mutations
+  mutations,
 });

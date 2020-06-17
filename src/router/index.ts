@@ -1,17 +1,10 @@
-/**
- * Created by kid on 2017/5/17.
- */
 import VueRouter from 'vue-router';
-import Login from './login';
-import Error from './error';
-import Home from './home';
-import store from '../store';
+import Login from '@/router/login';
+import Error from '@/router/error';
+import Home from '@/router//home';
+import store from '@/store';
 
-const routes = [
-  ...Login,
-  ...Error,
-  ...Home,
-];
+const routes = [...Login, ...Error, ...Home];
 const router = new VueRouter({
   mode: 'history',
   routes,

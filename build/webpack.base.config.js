@@ -7,7 +7,7 @@ const Webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/index.js'],
+  entry: ['babel-polyfill', './src/index.ts'],
   module: {
     rules: [
       {
@@ -23,6 +23,14 @@ module.exports = {
         },
       },
       {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        },
+      },
+      {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
@@ -30,18 +38,21 @@ module.exports = {
             options: {
               limit: 8192,
             },
-          }
-        ]
-      }
-    ]
+          },
+        ],
+      },
+    ],
   },
   output: {
     filename: 'js/[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
-    chunkFilename: 'js/[name].[chunkhash].js'
+    chunkFilename: 'js/[name].[chunkhash].js',
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json']
+    extensions: ['.js', '.vue', '.json', '.ts'],
+    alias: {
+      '@': path.resolve(__dirname, '../src'),
+    },
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -49,11 +60,11 @@ module.exports = {
       template: path.resolve(__dirname, '../index.html'),
       inject: true,
     }),
-    new Webpack.NamedModulesPlugin()
+    new Webpack.NamedModulesPlugin(),
   ],
   optimization: {
     splitChunks: {
       chunks: 'async',
-    }
-  }
+    },
+  },
 };

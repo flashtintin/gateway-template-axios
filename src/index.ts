@@ -4,18 +4,20 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import axios from './utils/axios';
-import app from './views/app.vue';
-import router from './router';
-import store from './store';
+import axios from '@/utils/axios';
+import app from '@/views/app.vue';
+import router from '@/router';
+import store from '@/store';
 
 Vue.prototype.$axios = axios;
 
 Vue.use(Vuex);
+Vue.use(VueRouter);
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(app)
+  render: h => h(app),
 });

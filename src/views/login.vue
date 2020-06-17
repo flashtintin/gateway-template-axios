@@ -1,32 +1,29 @@
 <template>
-    <div class="index">
-        <input type="text" name="username" title="username" v-model="username">
-        <input name="password" type="password" title="password" v-model="password">
-        <input type="button" value="login" @click="login">
-    </div>
+  <div class="index">
+    <input type="text" name="username" title="username" v-model="username" />
+    <input name="password" type="password" title="password" v-model="password" />
+    <input type="button" value="login" @click="login" />
+  </div>
 </template>
 
-<script>
-  export default {
-    data() {
-      return {
-        username: '',
-        password: '',
-      };
-    },
-    methods: {
-      async login() {
-        // const result = await this.$post('/api/login', {
-        //   username: this.username,
-        //   password: this.password,
-        // });
-        // if (result.code !== 0) {
-        //   console.log(result.message);
-        // } else {
-        //   window.location.replace('/');
-        // }
-        window.location.replace('/network');
-      },
-    },
-  };
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+
+@Component({
+  name: 'login',
+})
+export default class LoginPage extends Vue {
+  private username: string = '';
+  private password: string = '';
+
+  private login() {
+    window.location.replace('/network');
+  }
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  }
+}
 </script>

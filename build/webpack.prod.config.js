@@ -11,7 +11,7 @@ const baseConfig = require('./webpack.base.config');
 const prodConfig = merge(baseConfig, {
   mode: 'production',
   output: {
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -21,8 +21,8 @@ const prodConfig = merge(baseConfig, {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'less-loader'
-        ]
+          'less-loader',
+        ],
       },
       {
         test: /\.css$/,
@@ -30,27 +30,27 @@ const prodConfig = merge(baseConfig, {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-        ]
+        ],
       },
-    ]
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
       chunkFilename: 'css/[name].[hash].css',
-    })
+    }),
   ],
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true // set to true if you want JS source maps
+        sourceMap: true, // set to true if you want JS source maps
       }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
-  }
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+  },
 });
 
 module.exports = prodConfig;

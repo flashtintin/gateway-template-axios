@@ -53,7 +53,7 @@ app.use(async (ctx, next) => {
 app.use(bodypaser());
 
 app.use(session({
-  key: '{{name}}',
+  key: 'ts-test1',
   store: new Store()
 }));
 

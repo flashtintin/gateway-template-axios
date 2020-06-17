@@ -9,7 +9,7 @@ const devConfig = merge(baseConfig, {
   devtool: 'inline-source-map',
   mode: 'development',
   output: {
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     rules: [{
@@ -18,21 +18,21 @@ const devConfig = merge(baseConfig, {
         'vue-style-loader',
         'css-loader',
         'postcss-loader',
-        'less-loader'
-      ]
+        'less-loader',
+      ],
     },
     {
       test: /\.css$/,
       use: [
         'vue-style-loader',
         'css-loader',
-        'postcss-loader'
-      ]
-    }]
+        'postcss-loader',
+      ],
+    }],
   },
   plugins: [
-    new Webpack.HotModuleReplacementPlugin()
-  ]
+    new Webpack.HotModuleReplacementPlugin(),
+  ],
 });
 
 module.exports = devConfig;
