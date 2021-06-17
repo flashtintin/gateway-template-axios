@@ -89,7 +89,7 @@
     "mini-css-extract-plugin": "^0.4.2",
     "mkdirp": "^0.5.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "postcss": "^7.0.2",
+    "postcss": "^7.0.36",
     "postcss-loader": "^3.0.0",
     "postcss-pxtorem": "^4.0.1",
     "rimraf": "2.6.1",
